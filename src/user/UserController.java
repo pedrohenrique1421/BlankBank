@@ -1,23 +1,25 @@
 package user;
 
+import objRetorno.ObjRetorno;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 
-class objRetorno{
-    public String nome, agencia, cpf;
-    public float saldo;
-    public boolean status;
-
-    public objRetorno(String nome, String agencia, String cpf, float saldo, boolean status){
-        this.nome = nome;
-        this.agencia = agencia;
-        this.cpf = cpf;
-        this.saldo = saldo;
-        this.status = status;
-    }
-}
+//class ObjRetorno{
+//    public String nome, agencia, cpf;
+//    public float saldo;
+//    public boolean status;
+//
+//    public ObjRetorno(String nome, String agencia, String cpf, float saldo, boolean status){
+//        this.nome = nome;
+//        this.agencia = agencia;
+//        this.cpf = cpf;
+//        this.saldo = saldo;
+//        this.status = status;
+//    }
+//}
 
 public class UserController {
     private final List<User> usuarios = new ArrayList<>();
@@ -34,9 +36,9 @@ public class UserController {
         return false;
     }
     
-    public objRetorno criarUser(String nome, String agencia, String cpf, String dataNasc){
+    public ObjRetorno criarUser(String nome, String agencia, String cpf, String dataNasc){
         Random random = new Random();
-        Scanner scanner = new Scanner();// Error Aqui
+        Scanner scanner = new Scanner(System.in);
         int proxId;
         do{
             proxId = random.nextInt(1000000000, 2147483647);
@@ -50,16 +52,16 @@ public class UserController {
         }
         ids.add(proxId);
 
-        return new objRetorno(user.getNome(), user.getAgencia(), user.getCpf(), user.getSaldo(), true);
+        return new ObjRetorno("user.getNome()", "user.getAgencia()", "user.getCpf()", 129, true);
     }
 
-    public objRetorno getUser(String nome, String cpf, String senha){
-        for (int i = 0; i < usuarios.size(); i++) {
-            User user = usuarios.get(i);
-            if (user.getCpf().equals(cpf) && user.getNome().equals(nome) && user.verificarSenha(senha)){
-                return new objRetorno(user.getNome(), user.getAgencia(), user.getCpf(), user.getSaldo(), true);
-            }
-        }
-        return new objRetorno("","","",0,false);
-    }
+//    public objRetorno getUser(String nome, String cpf, String senha){
+//        for (int i = 0; i < usuarios.size(); i++) {
+//            User user = usuarios.get(i);
+//            if (user.getCpf().equals(cpf) && user.getNome().equals(nome) && user.verificarSenha(senha)){
+//                return new objRetorno(user.getNome(), user.getAgencia(), user.getCpf(), user.getSaldo(), true);
+//            }
+//        }
+//        return new objRetorno("","","",0,false);
+//    }
 }
