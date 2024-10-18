@@ -52,16 +52,16 @@ public class UserController {
         }
         ids.add(proxId);
 
-        return new ObjRetorno("user.getNome()", "user.getAgencia()", "user.getCpf()", 129, true);
+        return new ObjRetorno(usuarios.getLast().nome, usuarios.getLast().agencia, usuarios.getLast().cpf, usuarios.getLast().getSaldo(), true);
     }
 
-//    public objRetorno getUser(String nome, String cpf, String senha){
-//        for (int i = 0; i < usuarios.size(); i++) {
-//            User user = usuarios.get(i);
-//            if (user.getCpf().equals(cpf) && user.getNome().equals(nome) && user.verificarSenha(senha)){
-//                return new objRetorno(user.getNome(), user.getAgencia(), user.getCpf(), user.getSaldo(), true);
-//            }
-//        }
-//        return new objRetorno("","","",0,false);
-//    }
+    public ObjRetorno getUser(String nome, String cpf, String senha){
+        for (int i = 0; i < usuarios.size(); i++) {
+            User user = usuarios.get(i);
+            if (user.getCpf().equals(cpf) && user.getNome().equals(nome) && user.verificarSenha(senha)){
+                return new ObjRetorno(user.getNome(), user.getAgencia(), user.getCpf(), user.getSaldo(), true);
+            }
+        }
+        return new ObjRetorno("","","",0,false);
+    }
 }
