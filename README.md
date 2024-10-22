@@ -4,3 +4,6 @@ Existe 3 branchs(Linhas do tempo):
 - Bruna
 - Eduarda
 - Pedro
+# Partes Feitas
+- Cadastrar conta
+- 
