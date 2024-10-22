@@ -6,4 +6,9 @@ Existe 3 branchs(Linhas do tempo):
 - Pedro
 # Partes Feitas
 - Cadastrar conta
-- 
+# Partes para fazer
+- Depósito
+- Saque
+- Implementar em cadastrar conta:
+    - Digitos CPF
+- Tranferencia de uma conta para a outra
