@@ -7,6 +7,8 @@ Existe 3 branchs(Linhas do tempo):
 # Partes Feitas
 - Cadastrar conta
 - Logar Conta
+- Extrato
+- Menu usuario logado
 # Partes para fazer
 - Depósito
 - Saque
