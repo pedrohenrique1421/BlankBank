@@ -15,9 +15,6 @@ public class Menu {
         +"\n3. Sair"+"\n12. DevOptions  "+"\n--> ");
     }
 
-    public void printConfirmação(String msg){
-        System.out.print("\n\nVocê selecionou "+msg+", continuar? ( 1 - sim | 2 - não )"+"\n--> ");
-    }
 
     public void printObjRetorno(ObjRetorno obj){
         System.out.println(((obj.status)?obj.nome + " | " + obj.agencia + " | " + obj.cpf + " | " + obj.saldo:"Error"));
@@ -26,8 +23,11 @@ public class Menu {
     public void criarConta(){
         String nome, agencia, cpf, dataNasc;
         do {
-            System.out.print("Digite seu nome: ");
+            System.out.print("Digite seu nome ou para sair digite 400: ");
             nome = scanner.next();
+            if (nome.equals("400")){
+                return;
+            }
             System.out.print("Digite sua agencia: ");
             agencia = scanner.next();
             System.out.print("Digite seu cpf: ");
@@ -41,11 +41,14 @@ public class Menu {
         System.out.println((response.status)?"Criado com sucesso":"Error ao criar usuario");
     }
 
-    public void EntrarConta(){
+    public void entrarConta(){
         String nome, cpf, senha;
         do {
-            System.out.print("Digite seu nome: ");
+            System.out.print("Digite seu nome ou para sair digite 400: ");
             nome = scanner.next();
+            if (nome.equals("400")){
+                return;
+            }
             System.out.print("Digite sua cpf: ");
             cpf = scanner.next();
             System.out.print("Digite sua senha: ");
@@ -58,6 +61,27 @@ public class Menu {
     }
 
     // Fazer as opcoes de transferir, depositar e retirar...
+
+    public void menuDentroConta(ObjRetorno objUser){
+        int resp;
+        do {
+            System.out.println("1. Transferir\n2. Depositar\n3. Retirar\n4. Sair para o menu principal");
+            resp = scanner.nextInt();
+
+            switch (resp){
+                case 1:
+                    System.out.println("Transferir");
+                    break;
+                case 2:
+                    System.out.println("Depositar");
+                    break;
+                case 3:
+                    System.out.println("Retirar");
+                    break;
+            }
+        } while (resp != 4);
+    }
+
 
     public void limparConsole() {
         for (int i = 0; i < 100; i++) {
