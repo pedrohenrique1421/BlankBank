@@ -64,4 +64,15 @@ public class UserController {
         }
         return new ObjRetorno("","","",0,false);
     }
+
+    public ObjRetorno getUserSemSenha(String nome, String cpf){
+        for (int i = 0; i < usuarios.size(); i++) {
+            User user = usuarios.get(i);
+            if (user.getCpf().equals(cpf) && user.getNome().equals(nome)){
+                return new ObjRetorno(user.getNome(), user.getAgencia(), user.getCpf(), user.getSaldo(), true);
+            }
+        }
+        return new ObjRetorno("","","",0,false);
+    }
+
 }
