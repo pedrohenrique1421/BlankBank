@@ -6,6 +6,7 @@ Existe 3 branchs(Linhas do tempo):
 - Pedro
 # Partes Feitas
 - Cadastrar conta
+- Logar Conta
 # Partes para fazer
 - Depósito
 - Saque
