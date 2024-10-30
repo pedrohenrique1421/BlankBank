@@ -21,25 +21,11 @@ public class User {
         return cpf;
     }
 
-    protected String getDataNasc(){
-        return dataNasc;
-    }
+    protected String getNome(){ return nome; }
 
-    protected String getNome(){
-        return nome;
-    }
+    protected String getAgencia(){ return agencia; }
 
-    protected String getAgencia(){
-        return agencia;
-    }
-
-    protected int getId(){
-        return id;
-    }
-
-    protected float getSaldo(){
-        return saldo;
-    }
+    protected float getSaldo(){ return saldo; }
 
     protected boolean verificarSenha(String senha){
         return this.senha.equals(senha);
@@ -56,6 +42,5 @@ public class User {
         } else {
             return false;
         }
-
     }
 }

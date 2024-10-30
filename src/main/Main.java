@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        // Função principal
         Menu menu = new Menu();
         Scanner scanner = new Scanner(System.in);
         UserController userController = new UserController();
@@ -16,15 +17,10 @@ public class Main {
             menu.printMenuPrincipal();
             switch (scanner.nextInt()){
                 case 1:
-                    menu.EntrarConta();
+                    menu.entrarConta();
                     break;
                 case 2:
-                    menu.printConfirmação("a função criar conta");
-                    if (scanner.nextInt() == 1){
-                        menu.criarConta();
-                    } else {
-                        System.out.println("voltando para o menu...");
-                    }
+                    menu.criarConta();
                     break;
                 case 3:
                     System.out.println("Saindo...");

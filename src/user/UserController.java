@@ -7,19 +7,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 
-//class ObjRetorno{
-//    public String nome, agencia, cpf;
-//    public float saldo;
-//    public boolean status;
-//
-//    public ObjRetorno(String nome, String agencia, String cpf, float saldo, boolean status){
-//        this.nome = nome;
-//        this.agencia = agencia;
-//        this.cpf = cpf;
-//        this.saldo = saldo;
-//        this.status = status;
-//    }
-//}
 
 public class UserController {
     private final List<User> usuarios = new ArrayList<>();
@@ -64,4 +51,15 @@ public class UserController {
         }
         return new ObjRetorno("","","",0,false);
     }
+
+    public ObjRetorno getUserSemSenha(String nome, String cpf){
+        for (int i = 0; i < usuarios.size(); i++) {
+            User user = usuarios.get(i);
+            if (user.getCpf().equals(cpf) && user.getNome().equals(nome)){
+                return new ObjRetorno(user.getNome(), user.getAgencia(), user.getCpf(), user.getSaldo(), true);
+            }
+        }
+        return new ObjRetorno("","","",0,false);
+    }
+
 }

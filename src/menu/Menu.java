@@ -15,9 +15,6 @@ public class Menu {
         +"\n3. Sair"+"\n12. DevOptions  "+"\n--> ");
     }
 
-    public void printConfirmação(String msg){
-        System.out.print("\n\nVocê selecionou "+msg+", continuar? ( 1 - sim | 2 - não )"+"\n--> ");
-    }
 
     public void printObjRetorno(ObjRetorno obj){
         System.out.println(((obj.status)?obj.nome + " | " + obj.agencia + " | " + obj.cpf + " | " + obj.saldo:"Error"));
@@ -26,8 +23,11 @@ public class Menu {
     public void criarConta(){
         String nome, agencia, cpf, dataNasc;
         do {
-            System.out.print("Digite seu nome: ");
+            System.out.print("Digite seu nome ou para sair digite 400: ");
             nome = scanner.next();
+            if (nome.equals("400")){
+                return;
+            }
             System.out.print("Digite sua agencia: ");
             agencia = scanner.next();
             System.out.print("Digite seu cpf: ");
@@ -41,11 +41,14 @@ public class Menu {
         System.out.println((response.status)?"Criado com sucesso":"Error ao criar usuario");
     }
 
-    public void EntrarConta(){
+    public void entrarConta(){
         String nome, cpf, senha;
         do {
-            System.out.print("Digite seu nome: ");
+            System.out.print("Digite seu nome ou para sair digite 400: ");
             nome = scanner.next();
+            if (nome.equals("400")){
+                return;
+            }
             System.out.print("Digite sua cpf: ");
             cpf = scanner.next();
             System.out.print("Digite sua senha: ");
@@ -54,14 +57,42 @@ public class Menu {
             System.out.print("\n\nInformcoes conferem? ( 1 - sim | 0 - não )\n--> ");
         } while(scanner.nextInt() == 0);
         response = userController.getUser(nome, cpf, senha);
-        printObjRetorno(response);
+        menuDentroConta(response);
     }
 
     // Fazer as opcoes de transferir, depositar e retirar...
 
-    public void limparConsole() {
-        for (int i = 0; i < 100; i++) {
-            System.out.println();
+    public void menuDentroConta(ObjRetorno objUser){
+        int resp;
+        while(true) {
+            System.out.println("1. Transferir\n2. Depositar\n3. Retirar\n4. Extrato\n5. Sair para o menu principal");
+            resp = scanner.nextInt();
+
+            switch (resp){
+                case 1:
+                    System.out.println("Transferir");
+                    // Escrever codigo de transferir aqui
+                    break;
+                case 2:
+                    System.out.println("Depositar");
+                    // Escrever codigo de Deposito aqui
+                    break;
+                case 3:
+                    System.out.println("Retirar");
+                    // Escrever codigo de Retirada aqui
+                    break;
+                case 4:
+                    System.out.println("Extrato");
+                    ObjRetorno response = userController.getUserSemSenha(objUser.nome, objUser.cpf);
+                    System.out.printf("| Nome: %s |\n| Agencia: %s |\n| CPF: %s |\n| Saldo: %.2f |",
+                            response.nome, response.agencia, response.cpf, response.saldo);
+                    break;
+                case 5:
+                    System.out.println("fim ------------------");
+                    return;
+            }
+            System.out.println("\n\nDigite algo para continuar... ");
+            scanner.next();
         }
     }
 }
