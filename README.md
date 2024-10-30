@@ -9,8 +9,8 @@ Existe 3 branchs(Linhas do tempo):
 - Logar Conta
 - Extrato
 - Menu usuario logado
-# Partes para fazer
 - Depósito
+# Partes para fazer
 - Saque
 - Implementar em cadastrar conta:
     - Digitos CPF
