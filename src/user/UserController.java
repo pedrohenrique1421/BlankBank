@@ -11,6 +11,8 @@ import java.util.Random;
 public class UserController {
     private final List<User> usuarios = new ArrayList<>();
     private List<Integer> ids = new ArrayList<>();
+    Random random = new Random();
+    Scanner scanner = new Scanner(System.in);
     
     private boolean verificarId(int id){
         if(ids.size() > 0){
@@ -24,8 +26,6 @@ public class UserController {
     }
     
     public ObjRetorno criarUser(String nome, String agencia, String cpf, String dataNasc){
-        Random random = new Random();
-        Scanner scanner = new Scanner(System.in);
         int proxId;
         do{
             proxId = random.nextInt(1000000000, 2147483647);
@@ -60,6 +60,43 @@ public class UserController {
             }
         }
         return new ObjRetorno("","","",0,false);
+    }
+
+    public boolean depositar(String nome, String cpf){
+        float valor = 0;
+        for (int i = 0; i < usuarios.size(); i++) {
+            User user = usuarios.get(i);
+            if (user.getCpf().equals(cpf) && user.getNome().equals(nome)){
+                do {
+                    System.out.print("Qual o valor?\n--> ");
+                    valor = scanner.nextFloat();
+                    if (valor > 1000 || valor <= 0){
+                        System.out.println((valor > 100)?"Valor maximo excedido. Valor máximo: R$ 1.000,00":"Valor menor que zero. valor minimo: R$ 1,00");
+                        System.out.print("\n\nDeseja digitar o valor novamente?( 1 - sim | 2 - não )\n--> ");
+                        if (scanner.nextInt() == 2){
+                            return false;
+                        }
+                    }
+
+                } while (valor == 0 || valor > 1000 );
+
+                System.out.printf("| Nome: %s |\n| Agencia: %s |\n| CPF: %s |\n| Valor: %.2f |\n",
+                        user.getNome(), user.getAgencia(), user.getCpf(), valor);
+                System.out.print("\nConfirmar?( 1 - sim | 2 - não )\n--> ");
+
+                if (scanner.nextInt() == 1){
+                    System.out.print("Digite sua senha: ");
+                    boolean responseDepositar = user.depositar(scanner.next(), valor);
+
+                    if (responseDepositar){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }

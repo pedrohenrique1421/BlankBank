@@ -75,7 +75,19 @@ public class Menu {
                     break;
                 case 2:
                     System.out.println("Depositar");
-                    // Escrever codigo de Deposito aqui
+                    boolean loop = true;
+                    do {
+                        boolean response = userController.depositar(objUser.nome, objUser.cpf);
+                        if (!response){
+                            System.out.print("\nO deposito falhou, deseja tentar novamente? ( 1 - sim | 2 - não )\n --> ");
+                            if (scanner.nextInt() == 2){
+                                loop = false;
+                            }
+                        } else {
+                            System.out.println("Deposito realizado com sucesso!");
+                            loop = false;
+                        }
+                    } while (loop);
                     break;
                 case 3:
                     System.out.println("Retirar");
@@ -86,13 +98,13 @@ public class Menu {
                     ObjRetorno response = userController.getUserSemSenha(objUser.nome, objUser.cpf);
                     System.out.printf("| Nome: %s |\n| Agencia: %s |\n| CPF: %s |\n| Saldo: %.2f |",
                             response.nome, response.agencia, response.cpf, response.saldo);
+                    System.out.println("\n\nDigite algo para continuar... ");
+                    scanner.next();
                     break;
                 case 5:
                     System.out.println("fim ------------------");
                     return;
             }
-            System.out.println("\n\nDigite algo para continuar... ");
-            scanner.next();
         }
     }
 }
